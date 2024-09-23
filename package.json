@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "Adnan Lahrech",
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",
@@ -18,11 +18,21 @@
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "cache:generate": "npx mikro-orm cache:generate --combined --config=./src/main/mikro-orm-cli.config.ts",
+    "migration:create-init": "npx mikro-orm migration:create --initial --config=./src/main/mikro-orm-cli.config.ts",
+    "migration:create": "npx mikro-orm migration:create --config=./src/main/mikro-orm-cli.config.ts",
+    "migration:up": "npx mikro-orm migration:up --config=./src/main/mikro-orm-cli.config.ts"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
+    "@mikro-orm/cli": "^6.3.10",
+    "@mikro-orm/core": "^6.3.10",
+    "@mikro-orm/migrations": "^6.3.10",
+    "@mikro-orm/postgresql": "^6.3.10",
+    "@mikro-orm/reflection": "^6.3.10",
+    "@mikro-orm/sql-highlighter": "^1.0.1",
     "electron-updater": "^6.1.7"
   },
   "devDependencies": {
@@ -41,7 +51,11 @@
     "prettier": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.2",
     "vite": "^5.3.1"
+  },
+  "mikro-orm": {
+    "useTsNode": true
   }
 }
