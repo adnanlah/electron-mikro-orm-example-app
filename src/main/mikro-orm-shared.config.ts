@@ -5,10 +5,12 @@ import { SqlHighlighter } from '@mikro-orm/sql-highlighter'
 
 import * as metadata from '../../temp/metadata.json'
 import credentials from './utils/credentials'
+import { TsMorphMetadataProvider } from '@mikro-orm/reflection'
 
 const config = {
   ...credentials,
   driver: PostgreSqlDriver,
+  metadataProvider: TsMorphMetadataProvider,
   metadataCache: {
     enabled: true,
     adapter: GeneratedCacheAdapter,
